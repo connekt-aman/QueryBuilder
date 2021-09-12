@@ -1,0 +1,85 @@
+{
+  "query": [
+    {
+      "table": "Employee",
+      "operation": "select",
+      "columnFields": "*",
+      "filters": [
+        {
+          "operator": "IN",
+          "columnField": "dept",
+          "columnValues": "'IT','SALES'"
+        },
+        {
+          "operator": "equal",
+          "columnField": "lastname",
+          "columnValues": "'kumar'",
+          "filterOperation": "AND"
+        }
+      ]
+    },
+    {
+      "join": [
+        {
+          "joinTable": "Customers",
+          "tableColumn": "cusId",
+          "joinType": "inner join",
+          "joinWith": "Orders",
+          "joinColumn": "customerId"
+        },
+        {
+          "joinTable": "Orders",
+          "tableColumn": "catId",
+          "joinType": "inner join",
+          "joinWith": "Category",
+          "joinColumn": "categoryId"
+        }
+      ],
+      "operation": "select",
+      "columnFields": "Orders.OrderID, Customers.CustomerName, Orders.OrderDate, Category.Name",
+      "filters": [
+        {
+          "operator": "IN",
+          "columnField": "Category.Name",
+          "columnValues": "'MOBILES','TV','LAPTOP','REFRIGERATOR'"
+        }
+      ]
+    },
+    {
+      "operation": "insert",
+      "table": "abc"
+    },
+    {
+      "table": "Employee",
+      "operation": "select",
+      "columnFields": "*"
+    },
+    {
+      "table": "Employee",
+      "operation": "select",
+      "columnFields": "*",
+      "filters": [
+        {
+          "operator": "IN",
+          "columnField": "dept",
+          "table": "Department",
+          "operation": "select",
+          "columnFields": "id",
+          "filters": [
+            {
+              "operator": "not in",
+              "columnField": "dept_name",
+              "columnValues": "'SALES','MARKETING'"
+            }
+          ]
+        },
+        {
+          "operator": "equal",
+          "columnField": "lastname",
+          "columnValues": "'kumar'",
+          "filterOperation": "AND"
+        }
+      ]
+    }
+  ]
+}

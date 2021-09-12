@@ -1,0 +1,31 @@
+{
+  "query": [
+    {
+      "table": "Employee",
+      "operation": "select",
+      "columnFields": "*",
+      "filters": [
+        {
+          "operator": "IN",
+          "columnField": "dept",
+          "table": "Department",
+          "operation": "select",
+          "columnFields": "id",
+          "filters": [
+            {
+              "operator": "in",
+              "columnField": "dept_name",
+              "columnValues": "'SALES','MARKETING'"
+            }
+          ]
+        },
+        {
+          "operator": "equal",
+          "columnField": "lastname",
+          "columnValues": "'kumar'",
+          "filterOperation": "AND"
+        }
+      ]
+    }
+  ]
+}
